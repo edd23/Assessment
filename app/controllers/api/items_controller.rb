@@ -1,5 +1,6 @@
 class Api::ItemsController < ApplicationController
 
+
   def index
     render json: Item.all
   end
@@ -13,21 +14,10 @@ class Api::ItemsController < ApplicationController
     end
   end
 
-  def update
-    item = Item.find(params[:id])
-    item.update(complete: !item.complete)
-    render json: item
-  end
-
-  def destroy
-    Item.find(params[:id]).destroy
-    render json: { message: 'Item deleted' }
-  end
-
   private
 
   def item_params
-    params.require(:item).permit(:name, :complete)
+    params.require(:item).permit(:name, :image, :description, :likes)
   end
-  
+
 end
